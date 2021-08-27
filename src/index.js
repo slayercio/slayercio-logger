@@ -26,6 +26,15 @@ var Logger = /** @class */ (function () {
         Error.prepareStackTrace = orig;
         this.Log(calle.getFileName() + ":" + calle.getLineNumber() + ": " + error + "\n", LogType.Error);
     };
+    Logger.tracec = function (error) {
+        var orig = Error.prepareStackTrace;
+        Error.prepareStackTrace = function (_, stack) { return stack; };
+        var err = new Error();
+        Error.captureStackTrace(err, arguments.callee);
+        var calle = err.stack[2];
+        Error.prepareStackTrace = orig;
+        this.Log(calle.getFileName() + ":" + calle.getLineNumber() + ": " + error + "\n", LogType.CriticalError);
+    };
     Logger.Log = function (msg, type) {
         console.log(LogAnsi[type] + msg + LogAnsi[4]);
     };
@@ -38,8 +47,17 @@ var Logger = /** @class */ (function () {
     Logger.Debug = function (msg) {
         this.Log(msg, LogType.Debug);
     };
-    Logger.Err = function (msg) {
+    Logger.Error = function (msg) {
         this.trace(msg);
+    };
+    Logger.E = function (msg) {
+        this.Error(msg);
+    };
+    Logger.Critical = function (msg) {
+        this.tracec(msg);
+    };
+    Logger.C = function (msg) {
+        this.Critical(msg);
     };
     return Logger;
 }());

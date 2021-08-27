@@ -1,7 +1,7 @@
 import { Logger } from "./index";
 
 const err = () => {
-  Logger.Err("test");
+  Logger.E("test");
 };
 
 err();
