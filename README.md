@@ -2,6 +2,8 @@
 
 Simple zero-dependent logger for use in JavaScript / TypeScript projects.
 
+Error and Critical methods provide stack tree logging.
+
 ## Usage
 
 1. Import lib
