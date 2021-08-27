@@ -1,0 +1,24 @@
+{
+  "name": "slayercio-logger",
+  "version": "1.0.0",
+  "description": "Simple zero-dependent logger",
+  "main": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Slayerus/slayercio-logger.git"
+  },
+  "keywords": [
+    "logger",
+    "console"
+  ],
+  "author": "Slayerus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Slayerus/slayercio-logger/issues"
+  },
+  "homepage": "https://github.com/Slayerus/slayercio-logger#readme",
+  "devDependencies": {
+    "@types/node": "^16.7.4"
+  }
+}
