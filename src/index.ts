@@ -21,11 +21,9 @@ export class Logger {
     Error.captureStackTrace(err, arguments.callee);
     const calle = err.stack[2];
     Error.prepareStackTrace = orig;
-    this.Log(
-      `${(calle as any).getFileName()}:${(
-        calle as any
-      ).getLineNumber()}: ${error}\n`,
-      LogType.Error
+    this.LogE(
+      `${(calle as any).getFileName()}:${(calle as any).getLineNumber()}: `,
+      `${error}\n`
     );
   }
   private static tracec(error: string) {
@@ -35,11 +33,9 @@ export class Logger {
     Error.captureStackTrace(err, arguments.callee);
     const calle = err.stack[2];
     Error.prepareStackTrace = orig;
-    this.Log(
-      `${(calle as any).getFileName()}:${(
-        calle as any
-      ).getLineNumber()}: ${error}\n`,
-      LogType.CriticalError
+    this.LogCE(
+      `${(calle as any).getFileName()}:${(calle as any).getLineNumber()}: `,
+      `${error}\n`
     );
   }
 
@@ -47,6 +43,12 @@ export class Logger {
     console.log(LogAnsi[type] + msg + LogAnsi[4]);
   }
 
+  private static LogE(msg: string, error: string) {
+    console.log(msg + LogAnsi[LogType.Error] + error + LogAnsi[4]);
+  }
+  private static LogCE(msg: string, error: string) {
+    console.log(msg + LogAnsi[LogType.CriticalError] + error + LogAnsi[4]);
+  }
   static L(msg: string, type?: LogType): void {
     this.Log(msg, type);
   }
